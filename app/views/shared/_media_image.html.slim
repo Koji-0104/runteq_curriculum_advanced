@@ -2,4 +2,7 @@ ruby:
   medium = local_assigns[:medium]
 
 .media-image
-  = image_tag medium.image_url(:lg)
+  = image_insertion?(medium.image_url(:lg))
+
+
+

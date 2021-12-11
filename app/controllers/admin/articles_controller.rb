@@ -66,3 +66,7 @@ class Admin::ArticlesController < ApplicationController
     @article = Article.find_by!(uuid: params[:uuid])
   end
 end
+
+def image_insertion?(image)
+  image_tag image if image
+end
