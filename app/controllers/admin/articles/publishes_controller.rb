@@ -1,6 +1,7 @@
 class Admin::Articles::PublishesController < ApplicationController
   layout 'admin'
 
+  
   before_action :set_article
 
   def update
