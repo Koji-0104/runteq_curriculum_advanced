@@ -18,8 +18,6 @@
 
 FactoryBot.define do
   factory :tag do
-    type { 'Tag' }
-    name { 'テストタグ' }
-    slug { 'test-tag' }
+    
   end
 end
