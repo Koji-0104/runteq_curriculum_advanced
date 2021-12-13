@@ -1,0 +1,1 @@
+Article.publish_wait.past_published.find_each(&:published!)

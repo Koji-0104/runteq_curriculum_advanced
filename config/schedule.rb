@@ -5,7 +5,10 @@
 
 # Example:
 #
-# set :output, "/path/to/my/cron_log.log"
+require File.expand_path(File.dirname(__FILE__) + '/environment')
+rails_env = ENV['RAILS_ENV'] || :development
+set :environment, rails_env
+set :output, "#{Rails.root.to_s}/log/cron.log"
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
@@ -17,4 +20,7 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+every 1.minute do
+    rake "state_update:update"
+end
 # Learn more: http://github.com/javan/whenever
