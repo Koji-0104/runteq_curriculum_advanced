@@ -93,9 +93,8 @@ class Article < ApplicationRecord
     @prev_article ||= Article.viewable.order(published_at: :desc).find_by('published_at < ?', published_at)
   end
 
-
-
   def message_on_published
+
     if published?
       '記事を公開しました'
     elsif publish_wait?
@@ -103,8 +102,8 @@ class Article < ApplicationRecord
     end
   end
 
-
   def adjust_state
+
     return if draft?
 
     self.state = if publishable?
