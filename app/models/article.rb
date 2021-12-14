@@ -94,7 +94,6 @@ class Article < ApplicationRecord
   end
 
   def message_on_published
-
     if published?
       '記事を公開しました'
     elsif publish_wait?
