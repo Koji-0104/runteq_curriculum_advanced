@@ -103,14 +103,13 @@ class Article < ApplicationRecord
   end
 
   def adjust_state
-
     return if draft?
 
     self.state = if publishable?
-                  :published
-                else
-                  :publish_wait
-                end
+                   :published
+                 else
+                   :publish_wait
+                 end
   end
 
   def publishable?
