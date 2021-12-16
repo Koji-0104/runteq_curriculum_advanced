@@ -34,6 +34,7 @@ RSpec.describe 'AdminArticlesPreview', type: :system do
         click_link 'プレビュー'
         switch_to_window(windows.last)
         expect(page).to have_content(article.title), 'プレビューページが正しく表示されていません'
+        expect(page).not_to have_content('no implicit conversion of nil into String'), 'プレビューページがエラー画面になっています'
       end
     end
   end
