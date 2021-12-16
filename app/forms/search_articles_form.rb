@@ -21,8 +21,6 @@ class SearchArticlesForm
     body_words.each do |word|
       relation = relation.body_contain(word)
     end
-#relationを記載しないと上記の部分で評価されたものが戻り値になる。
-#結果として[]が戻り値になる。なのでrelationを記載し最後に評価することで、relationが戻り値となるようにする。
 
     relation
   end
