@@ -54,14 +54,14 @@ class Admin::ArticlesController < ApplicationController
 
   private
 
+  def search_params
+    params[:q]&.permit(:title, :category_id, :author_id, :body, :tag_id)
+  end
+
   def article_params
     params.require(:article).permit(
       :title, :description, :slug, :state, :published_at, :eye_catch, :category_id, :author_id, tag_ids: []
     )
-  end
-
-  def search_params
-    params[:q]&.permit(:title, :category_id)
   end
 
   def set_article
