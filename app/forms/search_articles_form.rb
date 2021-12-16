@@ -1,8 +1,7 @@
 class SearchArticlesForm
-  include ActiveModel::Model #ActiveRecodeと同じようにコードがかけるようになる。
+  include ActiveModel::Model
   include ActiveModel::Attributes
 
-#ActiveModel::Attributesで属性を定義する。
   attribute :category_id, :integer
   attribute :author_id, :integer
   attribute :tag_id, :integer
