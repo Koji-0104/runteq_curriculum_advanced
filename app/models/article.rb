@@ -109,9 +109,9 @@ class Article < ApplicationRecord
     return if draft?
 
     self.state = if publishable?
-                  :published
+                 :published
                  else
-                  :publish_wait
+                 :publish_wait
                  end
   end
 
