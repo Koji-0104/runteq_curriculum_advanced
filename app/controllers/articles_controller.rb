@@ -40,4 +40,10 @@ class ArticlesController < ApplicationController
     @category = Category.find_by!(slug: params[:category_slug])
     @title = @category.name
   end
+
+  def article_params
+    params.require(:article).permit(
+      :title, :description, :slug, :state, :published_at, :eye_catch, :category_id, :eyecatch_position, :eyecatch_width, :author_id, tag_ids: []
+    )
+  end
 end

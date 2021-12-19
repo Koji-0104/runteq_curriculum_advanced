@@ -41,13 +41,14 @@ class Article < ApplicationRecord
 
   enum state: { draft: 0, published: 1, publish_wait: 2 }
 
-  scope :past_published, -> { where('published_at <= ?', Time.current) }
+  enum eyecatch_position: { left: 0, center: 1, right: 2 }
 
   validates :slug, slug_format: true, uniqueness: true, length: { maximum: 255 }, allow_blank: true
   validates :title, presence: true, uniqueness: true, length: { maximum: 255 }
   validates :description, length: { maximum: 1000 }, allow_blank: true
   validates :state, presence: true
   validates :eye_catch, attachment: { purge: true, content_type: %r{\Aimage/(png|jpeg)\Z}, maximum: 10_485_760 }
+
 
   with_options if: :published? do
     validates :slug, slug_format: true, presence: true, length: { maximum: 255 }
@@ -67,6 +68,7 @@ class Article < ApplicationRecord
   scope :by_author, ->(author_id) { where(author_id: author_id) }
   scope :by_tag, ->(tag_id) { joins(:article_tags).merge(ArticleTag.where(tag_id: tag_id)) }
   scope :title_contain, ->(word) { where('title LIKE ?', "%#{word}%") }
+  scope :past_published, -> { where('published_at <= ?', Time.current) }
   scope :body_contain, ->(word) { joins(:sentences).merge(where('sentences.body LIKE ?', "%#{word}%")) }
 
   def build_body(controller)
@@ -108,10 +110,10 @@ class Article < ApplicationRecord
     return if draft?
 
     self.state = if publishable?
-                   :published
-                 else
-                   :publish_wait
-                 end
+                  :published
+                else
+                  :publish_wait
+                end
   end
 
   def publishable?

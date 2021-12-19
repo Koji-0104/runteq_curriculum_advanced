@@ -7,6 +7,7 @@ Rails.application.configure do
   config.cache_classes = false
   config.consider_all_requests_local = true
 
+
   # Session
   config.session_store :cookie_store, Settings.session_store.to_h
 
