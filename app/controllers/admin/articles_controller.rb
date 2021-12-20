@@ -33,7 +33,6 @@ class Admin::ArticlesController < ApplicationController
 
   def update
     authorize(@article)
-
     @article.assign_attributes(article_params)
     @article.adjust_state
     if @article.save
@@ -60,7 +59,7 @@ class Admin::ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(
-      :title, :description, :slug, :state, :published_at, :eye_catch, :category_id, :author_id, tag_ids: []
+      :title, :description, :slug, :state, :published_at, :eye_catch, :category_id, :author_id, :eyecatch_align, :eyecatch_width, tag_ids: []
     )
   end
 
