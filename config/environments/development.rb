@@ -61,4 +61,10 @@ Rails.application.configure do
 
   # Storage
   config.active_storage.service = :local
+
+  config.action_mailer.delivery_method = :letter_opener_web
+
+  #↑メール送信方法を記述する (test.rbだけ :test にする。テストはテスト配信)
+
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end
